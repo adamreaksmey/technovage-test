@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import LoginForm from '../views/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: HomeView
-    // },
+    {
+      path: '/',
+      name: 'login',
+      component: LoginForm,
+      beforeEnter: (to, from, next) => {
+        import('../assets/login/index.css').then(() => {
+          next()
+        })
+      }
+    }
     // {
     //   path: '/about',
     //   name: 'about',
