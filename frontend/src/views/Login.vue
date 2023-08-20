@@ -6,13 +6,13 @@
     <CForm @submit="login">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" class="form-control" />
+        <input required type="email" id="email" v-model="email" class="form-control" />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" class="form-control" />
+        <input required type="password" id="password" v-model="password" class="form-control" />
       </div>
-      <CButton color="primary">Submit</CButton>
+      <CButton color="primary" type="submit">Submit</CButton>
     </CForm>
   </div>
 </template>
@@ -29,7 +29,9 @@ export default {
     login(event) {
       event.preventDefault()
       if (this.email && this.password) {
-        console.log('Logged in')
+        const token = 'tokenset'
+        localStorage.setItem('token', token)
+        this.$router.push('/home')
       } else {
         console.log('Please fill in all fields')
       }
