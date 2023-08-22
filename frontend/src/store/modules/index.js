@@ -4,7 +4,7 @@ const modules = {}
 
 // Use dynamic import to retrieve the module files
 const importModule = (fileName) =>
-  import(/* webpackIgnore: true */ `./${fileName}`)
+  import(/* @vite-ignore */ `./${fileName}`)
     .then((module) => module.default)
     .catch((error) => {
       console.error(`Error importing module: ${fileName}`, error)

@@ -6,11 +6,17 @@
     <CForm @submit="login">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input required type="email" id="email" v-model="email" class="form-control" />
+        <input required type="email" id="email" v-model="userInfo.email" class="form-control" />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input required type="password" id="password" v-model="password" class="form-control" />
+        <input
+          required
+          type="password"
+          id="password"
+          v-model="userInfo.password"
+          class="form-control"
+        />
       </div>
       <CButton color="primary" type="submit">Submit</CButton>
     </CForm>
@@ -18,23 +24,40 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      userInfo: {
+        email: '',
+        password: ''
+      },
+      form: {
+        axios: null,
+        data: null
+      }
     }
   },
+
+  computed: {
+    ...mapGetters('auth', ['authToken'])
+  },
+
   methods: {
-    login(event) {
+    ...mapActions('auth', { loginUser: 'loginUser' }),
+
+    async login(event) {
       event.preventDefault()
-      if (this.email && this.password) {
-        const token = 'tokenset'
-        localStorage.setItem('token', token)
+      if (this.userInfo.email && this.userInfo.password) {
+        await this.loginUser({
+          axios: this.$axios,
+          data: this.userInfo
+        })
+        localStorage.setItem('auth-token', this.authToken)
         this.$router.push('/home')
-      } else {
-        console.log('Please fill in all fields')
       }
+      return console.log('no empty fields')
     }
   }
 }

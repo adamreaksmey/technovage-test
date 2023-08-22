@@ -1,16 +1,30 @@
-import * as Vue from 'vue';
-
 const types = {}
-const getters = {}
+const getters = {
+  authToken: (state) => state.userData.token
+}
 
 const actions = {
-  async loginUser({ commit }, data) {
-    // let url =
+  async loginUser({ commit }, form) {
+    let url = '/login'
+    await form.axios
+      .post(url, form.data)
+      .then((res) => {
+        commit('LOGGED_IN_USER', res.data)
+      })
+      .catch((error) => {})
   }
 }
 
-const mutations = {}
-const state = {}
+const mutations = {
+  LOGGED_IN_USER(state, value) {
+    state.userData = value
+    console.log(value)
+  }
+}
+
+const state = {
+  userData: null
+}
 
 export default {
   namespaced: true,
