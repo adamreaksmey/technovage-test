@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function __construct(private Request $request)
+    public function __construct(private Request $request, private User $user)
     {
     }
 
@@ -25,10 +26,10 @@ class AuthController extends Controller
         return response()->json(['error' => 'Invalid email or password'], 401);
     }
 
-    public function test()
+    public function authorized()
     {
         return response()->json([
-            'message' => 'you are in'
+            "authenticated" => Auth::user()
         ]);
     }
 }

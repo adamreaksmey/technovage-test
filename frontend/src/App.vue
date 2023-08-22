@@ -30,8 +30,12 @@ export default {
   },
   methods: {
     checkTokenExists() {
-      this.tokenExists = !!localStorage.getItem('auth-token')
+      this.tokenExists = !!this.$cookies.get('auth-token')
+      if (this.tokenExists){
+        return this.$router.push('/home')
+      }
+      return this.$router.push('/')
     }
   }
 }
-</script>
+</script>s

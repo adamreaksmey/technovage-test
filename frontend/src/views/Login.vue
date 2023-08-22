@@ -54,8 +54,8 @@ export default {
           axios: this.$axios,
           data: this.userInfo
         })
-        localStorage.setItem('auth-token', this.authToken)
-        return this.$router.push('/home')
+        this.$router.push('/home')
+        return this.$cookies.set('auth-token', this.authToken, { expires: 7 });
       }
       return console.log('no empty fields')
     }
