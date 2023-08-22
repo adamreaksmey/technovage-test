@@ -20,7 +20,18 @@ export default {
     }
   },
   created() {
-    this.tokenExists = !!localStorage.getItem('auth-token');
+    this.checkTokenExists()
+  },
+  watch: {
+    '$route': {
+      immediate: true,
+      handler: 'checkTokenExists'
+    }
+  },
+  methods: {
+    checkTokenExists() {
+      this.tokenExists = !!localStorage.getItem('auth-token')
+    }
   }
 }
 </script>

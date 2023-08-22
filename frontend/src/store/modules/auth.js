@@ -18,7 +18,6 @@ const actions = {
 const mutations = {
   LOGGED_IN_USER(state, value) {
     state.userData = value
-    console.log(value)
   }
 }
 

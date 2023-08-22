@@ -55,7 +55,7 @@ export default {
           data: this.userInfo
         })
         localStorage.setItem('auth-token', this.authToken)
-        this.$router.push('/home')
+        return this.$router.push('/home')
       }
       return console.log('no empty fields')
     }
