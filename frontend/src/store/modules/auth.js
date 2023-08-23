@@ -1,6 +1,17 @@
+import jwtDecode from 'jwt-decode'
+
 const types = {}
 const getters = {
-  authToken: (state) => state.userData.token
+  authToken: (state) => state.userToken.token,
+  isAuthorized: (state, getters) => {
+    const token = localStorage.getItem('auth-token')
+    if (token) {
+      const decoded = jwtDecode(token)
+      const current = Date.now() / 1000
+      return decoded.exp > current
+    }
+    return false
+  }
 }
 
 const actions = {
@@ -17,12 +28,12 @@ const actions = {
 
 const mutations = {
   LOGGED_IN_USER(state, value) {
-    state.userData = value
+    state.userToken = value
   }
 }
 
 const state = {
-  userData: null
+  userToken: null
 }
 
 export default {

@@ -9,11 +9,11 @@ const router = createRouter({
       path: '/',
       name: 'login',
       component: LoginForm,
-      beforeEnter: (to, from, next) => {
-        import('../assets/login/index.css').then(() => {
-          next()
-        })
-      }
+      // beforeEnter: (to, from, next) => {
+      //   import('../assets/login/index.css').then(() => {
+      //     next()
+      //   })
+      // }
     },
     {
       path: '/home',
@@ -22,5 +22,9 @@ const router = createRouter({
     }
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   // const
+// })
 
 export default router

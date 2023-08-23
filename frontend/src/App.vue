@@ -10,6 +10,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import MainLayout from './components/layout/main.vue'
+import { mapActions, mapGetters } from 'vuex'
 </script>
 
 <script>
@@ -22,20 +23,31 @@ export default {
   created() {
     this.checkTokenExists()
   },
+  computed: {
+    ...mapGetters('auth', ['isAuthorized']),
+    ...mapGetters('user', ['userInfo'])
+  },
   watch: {
-    '$route': {
+    $route: {
       immediate: true,
       handler: 'checkTokenExists'
     }
   },
   methods: {
-    checkTokenExists() {
-      this.tokenExists = !!this.$cookies.get('auth-token')
-      if (this.tokenExists){
-        return this.$router.push('/home')
+    ...mapActions('user', ['userLog']),
+    // console.log(this.userInfo)
+    
+    async checkTokenExists() {
+      this.tokenExists = !!this.isAuthorized
+      await this.userLog()
+      if (!this.tokenExists) {
+        return this.$router.push('/')
+      } else {
+        if (this.$route.path === '/') {
+          return this.$router.push('/home')
+        }
       }
-      return this.$router.push('/')
     }
   }
 }
-</script>s
+</script>

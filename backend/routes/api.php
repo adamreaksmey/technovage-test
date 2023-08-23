@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/testing', [AuthController::class, 'authorized']);
+    Route::get('/user', [AuthController::class, 'authorized']);
 });

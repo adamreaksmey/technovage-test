@@ -34,7 +34,7 @@ class AuthController extends Controller
     public function authorized()
     {
         return response()->json([
-            "authenticated" => Auth::user()
+            "user" => Auth::user()
         ]);
     }
 }

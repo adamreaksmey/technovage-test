@@ -1,26 +1,34 @@
 <template>
-  <div>
-    <div class="sidebar-toggle" @click="toggleSidebar">
-      <div :class="{ 'arrow-open': isSidebarVisible }"><img src="../icon/right-arrow.png" /></div>
+  <div class="d-flex" id="wrapper">
+    <div class="bg-light border-right" id="sidebar-wrapper" :class="{ open: isSidebarVisible }">
+      <div class="sidebar-heading">Dashboard</div>
+      <div class="list-group list-group-flush">
+        <router-link class="list-group-item list-group-item-action bg-light" to="/home"
+          >Home</router-link
+        >
+        <router-link class="list-group-item list-group-item-action bg-light" to="/about"
+          >About</router-link
+        >
+        <router-link class="list-group-item list-group-item-action bg-light" to="/services"
+          >Services</router-link
+        >
+        <router-link class="list-group-item list-group-item-action bg-light" to="/contact"
+          >Contact</router-link
+        >
+        <router-link class="list-group-item list-group-item-action bg-light" to="/logout"
+          >Log out</router-link
+        >
+      </div>
     </div>
-    <div class="sidebar" :class="{ visible: isSidebarVisible }">
-      <ul>
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-    <div class="content">
-      <slot></slot>
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn" id="menu-toggle" @click="toggleSidebar">
+          <img src="../icon/right-arrow.png" />
+        </button>
+      </nav>
+      <div class="container-fluid">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
