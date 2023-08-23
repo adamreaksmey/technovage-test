@@ -14,16 +14,21 @@ class AuthController extends Controller
 
     public function login()
     {
-        $email = $this->request->email;
-        $password = $this->request->password;
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            $user = Auth::user();
-            $token = $user->createToken('auth-token')->plainTextToken;
+        $credentials = $this->request->only('email', 'password');
+        $token = Auth::attempt($credentials);
+        if (!$token) {
             return response()->json([
-                'token' => $token
-            ]);
+                'status' => 'error',
+                'message' => 'unauthorized'
+            ], 401);
         }
-        return response()->json(['error' => 'Invalid email or password'], 401);
+
+        $user = Auth::user();
+        return response()->json([
+            'status' => 'success',
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 
     public function authorized()
