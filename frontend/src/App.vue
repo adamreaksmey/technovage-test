@@ -3,13 +3,16 @@
     <MainLayout v-if="tokenExists">
       <RouterView />
     </MainLayout>
-    <RouterView v-else />
+    <LoginLayout v-else>
+      <RouterView />
+    </LoginLayout>
   </main>
 </template>
 
 <script setup>
 import { RouterView } from 'vue-router'
 import MainLayout from './components/layout/main.vue'
+import LoginLayout from './components/layout/login.vue'
 import { mapActions, mapGetters } from 'vuex'
 </script>
 
@@ -36,13 +39,14 @@ export default {
   methods: {
     ...mapActions('user', ['userLog']),
     // console.log(this.userInfo)
-    
+
     async checkTokenExists() {
       this.tokenExists = !!this.isAuthorized
-      await this.userLog()
+
       if (!this.tokenExists) {
         return this.$router.push('/')
       } else {
+        await this.userLog()
         if (this.$route.path === '/') {
           return this.$router.push('/home')
         }

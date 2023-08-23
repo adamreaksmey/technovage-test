@@ -1,5 +1,7 @@
 import jwtDecode from 'jwt-decode'
+import axios from "axios"
 
+const token = localStorage.getItem('auth-token')
 const types = {}
 const getters = {
   authToken: (state) => state.userToken.token,
@@ -17,12 +19,26 @@ const getters = {
 const actions = {
   async loginUser({ commit }, form) {
     let url = '/login'
-    await form.axios
+    await axios
       .post(url, form.data)
       .then((res) => {
         commit('LOGGED_IN_USER', res.data)
+        window.location.href = '/home'
       })
       .catch((error) => {})
+  },
+
+  async logoutUser({ commit }) {
+    let url = '/logout';
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    await axios.post(url, {}, config).then((res) => {
+      localStorage.removeItem('auth-token')
+      window.location.href = '/'
+    })
   }
 }
 

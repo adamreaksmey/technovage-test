@@ -34,7 +34,6 @@ export default {
         password: ''
       },
       form: {
-        axios: null,
         data: null
       }
     }
@@ -51,11 +50,9 @@ export default {
       event.preventDefault()
       if (this.userInfo.email && this.userInfo.password) {
         await this.loginUser({
-          axios: this.$axios,
           data: this.userInfo
         })
-
-        return localStorage.setItem('auth-token', this.authToken);
+        return localStorage.setItem('auth-token', this.authToken)
       }
       return console.log('no empty fields')
     }

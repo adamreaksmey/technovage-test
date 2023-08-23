@@ -7,7 +7,7 @@
           >Home</router-link
         >
         <router-link class="list-group-item list-group-item-action bg-light" to="/about"
-          >About</router-link
+          >Users</router-link
         >
         <router-link class="list-group-item list-group-item-action bg-light" to="/services"
           >Services</router-link
@@ -15,9 +15,9 @@
         <router-link class="list-group-item list-group-item-action bg-light" to="/contact"
           >Contact</router-link
         >
-        <router-link class="list-group-item list-group-item-action bg-light" to="/logout"
-          >Log out</router-link
-        >
+        <router-link class="list-group-item list-group-item-action bg-light" to="#" @click="logout">
+          Log out
+        </router-link>
       </div>
     </div>
     <div id="page-content-wrapper">
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'MainLayout',
   data() {
@@ -42,8 +43,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['logoutUser']),
     toggleSidebar() {
       this.isSidebarVisible = !this.isSidebarVisible
+    },
+    logout() {
+      this.logoutUser()
     }
   }
 }
