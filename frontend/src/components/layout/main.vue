@@ -6,7 +6,7 @@
         <router-link class="list-group-item list-group-item-action bg-light" to="/home"
           >Home</router-link
         >
-        <router-link class="list-group-item list-group-item-action bg-light" to="/about"
+        <router-link class="list-group-item list-group-item-action bg-light" to="/users"
           >Users</router-link
         >
         <router-link class="list-group-item list-group-item-action bg-light" to="/services"
