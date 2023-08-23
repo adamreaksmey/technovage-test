@@ -25,6 +25,7 @@
         <button class="btn" id="menu-toggle" @click="toggleSidebar">
           <img src="../icon/right-arrow.png" />
         </button>
+        <div class="text-right">Welcome, {{ user.name }}</div>
       </nav>
       <div class="container-fluid">
         <slot></slot>
@@ -39,8 +40,12 @@ export default {
   name: 'MainLayout',
   data() {
     return {
-      isSidebarVisible: false
+      isSidebarVisible: false,
+      user: null
     }
+  },
+  created() {
+    this.setUser()
   },
   methods: {
     ...mapActions('auth', ['logoutUser']),
@@ -49,6 +54,10 @@ export default {
     },
     logout() {
       this.logoutUser()
+    },
+    setUser() {
+      const user = JSON.parse(localStorage.getItem('auth-user'))
+      this.user = user
     }
   }
 }

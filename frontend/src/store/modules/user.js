@@ -4,7 +4,7 @@ import { toRaw } from 'vue'
 const token = localStorage.getItem('auth-token')
 const types = {}
 const getters = {
-  userInfo: (state) => toRaw(state.userInfo.user)
+  userInfo: (state) => toRaw(state.userInfo?.user)
 }
 
 const actions = {

@@ -20,7 +20,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      tokenExists: false
+      tokenExists: false,
+      user: null
     }
   },
   created() {
@@ -38,7 +39,6 @@ export default {
   },
   methods: {
     ...mapActions('user', ['userLog']),
-    // console.log(this.userInfo)
 
     async checkTokenExists() {
       this.tokenExists = !!this.isAuthorized
@@ -46,7 +46,6 @@ export default {
       if (!this.tokenExists) {
         return this.$router.push('/')
       } else {
-        await this.userLog()
         if (this.$route.path === '/') {
           return this.$router.push('/home')
         }
