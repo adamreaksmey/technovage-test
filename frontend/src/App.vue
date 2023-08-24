@@ -38,8 +38,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions('user', ['userLog']),
-
     checkTokenExists() {
       this.tokenExists = !!this.isAuthorized
       if (!this.isAuthorized && this.$route.name !== 'home') {
