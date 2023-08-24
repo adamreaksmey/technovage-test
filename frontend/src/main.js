@@ -6,15 +6,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
-import Cookies from "js-cookie"
-import { toRaw } from 'vue'
+import Cookies from 'js-cookie'
 
 const app = createApp(App)
 
-axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL
 app.config.globalProperties.$axios = axios
 app.config.globalProperties.$cookies = Cookies
-
 
 app.use(router)
 app.use(store)

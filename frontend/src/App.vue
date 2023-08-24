@@ -13,7 +13,7 @@
 import { RouterView } from 'vue-router'
 import MainLayout from './components/layout/main.vue'
 import LoginLayout from './components/layout/login.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 </script>
 
 <script>

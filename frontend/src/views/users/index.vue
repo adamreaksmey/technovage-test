@@ -5,16 +5,20 @@
         <tr>
           <th>Name</th>
           <th>Email</th>
-          <th>API Token</th>
-          <th>Custom</th>
+          <th>Registration Date</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Score</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.api_token }}</td>
-          <td>{{ user.custom }}</td>
+          <td>{{ user.registration_date }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.score }}</td>
         </tr>
       </tbody>
     </table>
@@ -47,12 +51,10 @@ export default {
     ...mapActions('user', ['registeredUsers']),
     async fetchUsersData() {
       await this.registeredUsers()
-      return console.log(this.userInfo)
+      return (this.users = this.userInfo)
     }
   }
 }
 </script>
 
-<style>
-/* Add any additional styling here */
-</style>
+<style></style>
