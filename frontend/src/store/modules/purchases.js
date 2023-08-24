@@ -1,27 +1,30 @@
 import axios from '@/axios'
 import { toRaw } from 'vue'
 
-const types = {}
 const getters = {
   getPurchase: (state) => {
     return toRaw(state.purchaseInfo.data)
+  },
+  getLastPage: (state) => {
+    return state.purchaseInfo.meta.last_page
   }
 }
 
 const actions = {
-  async fetchPurchases({ commit }) {
-    let url = '/purchases'
+  async fetchPurchases({ commit }, page) {
+    let url = `/purchases?page=${page}`
     await axios.get(url).then((res) => {
-      console.log(res.data)
-      commit('PURCHASE_INFO', res.data)
+      commit('SET_PURCHASE_INFO', res.data)
     })
   }
 }
+
 const mutations = {
-  PURCHASE_INFO(state, value) {
+  SET_PURCHASE_INFO(state, value) {
     state.purchaseInfo = value
   }
 }
+
 const state = {
   purchaseInfo: null
 }
