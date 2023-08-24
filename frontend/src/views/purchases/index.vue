@@ -1,21 +1,6 @@
 <template>
   <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Customer ID</th>
-          <th>Amount</th>
-          <th>Created At</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="purchase in purchases" :key="purchase.id">
-          <td>{{ purchase.customer_id }}</td>
-          <td>{{ purchase.amount }}</td>
-          <td>{{ purchase.created_at }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <TablePurchases :purchases="purchases" />
     <vue-awesome-paginate
       :total-items="50"
       :items-per-page="5"
@@ -29,8 +14,12 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import TablePurchases from '../../components/purchases/Table.vue'
 export default {
   name: 'Purchases',
+  components: {
+    TablePurchases
+  },
   data() {
     return {
       users: null,
