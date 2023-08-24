@@ -3,22 +3,16 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Registration Date</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>Score</th>
+          <th>Customer ID</th>
+          <th>Amount</th>
+          <th>Created At</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.registration_date }}</td>
-          <td>{{ user.phone }}</td>
-          <td>{{ user.address }}</td>
-          <td>{{ user.score }}</td>
+        <tr v-for="purchase in purchases" :key="purchase.id">
+          <td>{{ purchase.customer_id }}</td>
+          <td>{{ purchase.amount }}</td>
+          <td>{{ purchase.created_at }}</td>
         </tr>
       </tbody>
     </table>
@@ -39,12 +33,27 @@ export default {
           address: 'Siem Reap, Cambodia',
           score: '100'
         }
-      ]
+      ],
+      purchases: null
     }
   },
-  mounted() {},
+  mounted() {
+    this.getPurchases()
+  },
   computed: {
-    // ...mapGetters('')
+    ...mapGetters({
+      getPurchase: 'purchases/getPurchase'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetchPurchases: 'purchases/fetchPurchases'
+    }),
+    async getPurchases() {
+      await this.fetchPurchases()
+      this.purchases = this.getPurchase
+      console.log(this.getPurchase)
+    }
   }
 }
 </script>

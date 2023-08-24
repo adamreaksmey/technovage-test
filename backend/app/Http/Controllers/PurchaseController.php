@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Purchases;
 use Illuminate\Http\Request;
+use App\Http\Resources\PurchaseResource;
 
 class PurchaseController extends Controller
 {
@@ -14,7 +15,7 @@ class PurchaseController extends Controller
     public function index()
     {
         $data = $this->purchase->get();
-        return $data;
+        return PurchaseResource::collection($data);
     }
 
     public function store()
