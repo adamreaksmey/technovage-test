@@ -1,22 +1,17 @@
-import axios from 'axios'
+import axios from '@/axios'
 import { toRaw } from 'vue'
 
-const token = localStorage.getItem('auth-token')
 const types = {}
 const getters = {
-  userInfo: (state) => toRaw(state.userInfo?.user)
+  userInfo: (state) => {
+    return toRaw(state.userInfo)
+  }
 }
 
 const actions = {
-  async userLog({ commit, getters }) {
-    let url = '/user'
-    let config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-
-    await axios.get(url, config).then((res) => {
+  async registeredUsers({ commit, getters }) {
+    let url = '/users'
+    await axios.get(url).then((res) => {
       commit('USER_INFO', res.data)
     })
   }

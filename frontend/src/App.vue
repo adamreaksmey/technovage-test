@@ -28,8 +28,7 @@ export default {
     this.checkTokenExists()
   },
   computed: {
-    ...mapGetters('auth', ['isAuthorized']),
-    ...mapGetters('user', ['userInfo'])
+    ...mapGetters('auth', ['isAuthorized'])
   },
   watch: {
     $route: {
@@ -38,7 +37,7 @@ export default {
     }
   },
   methods: {
-    checkTokenExists() {
+    async checkTokenExists() {
       this.tokenExists = !!this.isAuthorized
       if (!this.isAuthorized && this.$route.name !== 'home') {
         return this.$router.push('/')

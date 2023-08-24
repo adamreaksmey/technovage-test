@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'UserTable',
   data() {
@@ -33,18 +34,21 @@ export default {
           api_token: 'token testing',
           custom: 'custom field'
         }
-      ] // Initialize an empty array for storing users
+      ]
     }
   },
   mounted() {
-    // Call your API function here to fetch users and update the "users" array
-    // Example: this.fetchUsers();
+    this.fetchUsersData()
+  },
+  computed: {
+    ...mapGetters('user', ['userInfo'])
   },
   methods: {
-    // Define your API function to fetch users
-    // fetchUsers() {
-    //   // Make an API call and update the "users" array
-    // },
+    ...mapActions('user', ['registeredUsers']),
+    async fetchUsersData() {
+      await this.registeredUsers()
+      return console.log(this.userInfo)
+    }
   }
 }
 </script>
