@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use App\Models\Purchases;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -56,6 +57,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function purchases()
     {
-        return $this->hasMany(Purchase::class, 'customer_id');
+        return $this->hasMany(Purchases::class, 'customer_id');
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchases extends Model
 {
     use HasFactory;
+    protected $table = "purchases";
     protected $guarded = [
         "id",
         "created_at",
