@@ -24,7 +24,7 @@ export default {
       user: null
     }
   },
-  created() {
+  mounted() {
     this.checkTokenExists()
   },
   computed: {
@@ -38,11 +38,11 @@ export default {
   },
   methods: {
     async checkTokenExists() {
-      this.tokenExists = !!this.isAuthorized
+      this.tokenExists = this.isAuthorized
       if (!this.isAuthorized && this.$route.name !== 'home') {
         return this.$router.push('/')
       }
-      if (this.isAuthorized && this.$route.name === 'home') {
+      if (this.isAuthorized && this.$route.name == 'undefined') {
         return this.$router.push('/home')
       }
     }
