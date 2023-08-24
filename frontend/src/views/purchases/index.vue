@@ -24,16 +24,7 @@ export default {
   name: 'Purchases',
   data() {
     return {
-      users: [
-        {
-          name: 'adam',
-          email: 'adaminiature@gmail.com',
-          registration_date: '10/15/2003',
-          phone: '011252664',
-          address: 'Siem Reap, Cambodia',
-          score: '100'
-        }
-      ],
+      users: null,
       purchases: null
     }
   },
@@ -52,7 +43,7 @@ export default {
     async getPurchases() {
       await this.fetchPurchases()
       this.purchases = this.getPurchase
-      console.log(this.getPurchase)
+      return
     }
   }
 }
