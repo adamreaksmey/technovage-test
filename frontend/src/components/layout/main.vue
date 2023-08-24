@@ -48,7 +48,7 @@ export default {
     this.setUser()
   },
   methods: {
-    ...mapActions('auth', ['logoutUser']),
+    ...mapActions({ logoutUser: 'auth/logoutUser' }),
     toggleSidebar() {
       this.isSidebarVisible = !this.isSidebarVisible
     },

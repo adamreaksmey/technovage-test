@@ -45,10 +45,10 @@ export default {
     this.fetchUsersData()
   },
   computed: {
-    ...mapGetters('user', ['userInfo'])
+    ...mapGetters({ userInfo: 'user/userInfo' })
   },
   methods: {
-    ...mapActions('user', ['registeredUsers']),
+    ...mapActions({ registeredUsers: 'user/registeredUsers' }),
     async fetchUsersData() {
       await this.registeredUsers()
       return (this.users = this.userInfo)

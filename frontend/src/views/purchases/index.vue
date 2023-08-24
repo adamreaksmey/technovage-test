@@ -41,6 +41,10 @@ export default {
         }
       ]
     }
+  },
+  mounted() {},
+  computed: {
+    // ...mapGetters('')
   }
 }
 </script>

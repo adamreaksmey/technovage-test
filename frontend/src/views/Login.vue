@@ -40,11 +40,11 @@ export default {
   },
 
   computed: {
-    // 
+    //
   },
 
   methods: {
-    ...mapActions('auth', { loginUser: 'loginUser' }),
+    ...mapActions({ loginUser: 'auth/loginUser' }),
 
     async login(event) {
       event.preventDefault()
@@ -52,9 +52,9 @@ export default {
         await this.loginUser({
           data: this.userInfo
         })
-        return;
+        return
       }
-      return console.log('no empty fields');
+      return console.log('no empty fields')
     }
   }
 }

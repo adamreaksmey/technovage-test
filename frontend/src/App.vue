@@ -24,11 +24,13 @@ export default {
       user: null
     }
   },
-  mounted() {
+  created() {
     this.checkTokenExists()
   },
   computed: {
-    ...mapGetters('auth', ['isAuthorized'])
+    ...mapGetters({
+      isAuthorized: 'auth/isAuthorized'
+    })
   },
   watch: {
     $route: {
@@ -42,7 +44,7 @@ export default {
       if (!this.isAuthorized && this.$route.name !== 'home') {
         return this.$router.push('/')
       }
-      if (this.isAuthorized && this.$route.name == 'undefined') {
+      if ((this.isAuthorized && this.$route.name == 'undefined') || this.$route.name == 'login') {
         return this.$router.push('/home')
       }
     }
