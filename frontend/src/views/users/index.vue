@@ -26,7 +26,14 @@ export default {
   name: 'UserTable',
   data() {
     return {
-      users: [] // Initialize an empty array for storing users
+      users: [
+        {
+          name: 'adam',
+          email: 'adaminiature@gmail.com',
+          api_token: 'token testing',
+          custom: 'custom field'
+        }
+      ] // Initialize an empty array for storing users
     }
   },
   mounted() {

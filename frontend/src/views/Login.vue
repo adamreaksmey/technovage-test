@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -40,7 +40,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('auth', ['authToken'])
+    // 
   },
 
   methods: {
@@ -52,9 +52,9 @@ export default {
         await this.loginUser({
           data: this.userInfo
         })
-        return localStorage.setItem('auth-token', this.authToken)
+        return;
       }
-      return console.log('no empty fields')
+      return console.log('no empty fields');
     }
   }
 }

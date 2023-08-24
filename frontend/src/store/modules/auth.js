@@ -24,6 +24,7 @@ const actions = {
       .then((res) => {
         commit('LOGGED_IN_USER', res.data)
         window.location.href = '/home'
+        localStorage.setItem('auth-token', res.data.token)
         localStorage.setItem('auth-user', JSON.stringify(res.data.user))
       })
       .catch((error) => {})

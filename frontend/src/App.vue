@@ -40,15 +40,13 @@ export default {
   methods: {
     ...mapActions('user', ['userLog']),
 
-    async checkTokenExists() {
+    checkTokenExists() {
       this.tokenExists = !!this.isAuthorized
-
-      if (!this.tokenExists) {
+      if (!this.isAuthorized && this.$route.name !== 'home') {
         return this.$router.push('/')
-      } else {
-        if (this.$route.path === '/') {
-          return this.$router.push('/home')
-        }
+      }
+      if (this.isAuthorized && this.$route.name === 'home') {
+        return this.$router.push('/home')
       }
     }
   }
