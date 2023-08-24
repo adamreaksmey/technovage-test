@@ -14,7 +14,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $data = $this->user->with('purchases')->get();
+        $data = $this->user->with('purchases')->paginate(5);
         return UsersResource::collection($data)->resolve();
     }
 

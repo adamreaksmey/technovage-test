@@ -21,7 +21,7 @@
       :items-per-page="5"
       :max-pages-shown="5"
       v-model="currentPage"
-      :on-click="onClickHandler"
+      :on-click="onPageChange"
       :show-breakpoint-buttons="false"
       :show-jump-buttons="true"
     />
@@ -55,7 +55,7 @@ export default {
       this.purchases = this.getPurchase
       return
     },
-    async onClickHandler(page) {
+    async onPageChange(page) {
       await this.fetchPurchases(page)
       this.purchases = this.getPurchase
     }
