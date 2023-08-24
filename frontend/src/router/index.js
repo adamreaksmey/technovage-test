@@ -3,6 +3,7 @@ import LoginForm from '../views/Login.vue'
 import TestingLayout from "../views/dashboard/index.vue"
 import UserTable from "../views/users/index.vue"
 import Purchases from "../views/purchases/index.vue"
+import PurchaseUpdate from "../views/purchases/update/index.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/purchases",
       name: "purchases",
       component: Purchases
+    },
+    {
+      path: "/purchase/:id",
+      name: "purchases-modify",
+      component: PurchaseUpdate
     }
   ]
 })

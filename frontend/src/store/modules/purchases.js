@@ -5,8 +5,8 @@ const getters = {
   getPurchase: (state) => {
     return toRaw(state.purchaseInfo.data)
   },
-  getLastPage: (state) => {
-    return state.purchaseInfo.meta.last_page
+  getSinglePurchase: (state) => {
+    return toRaw(state.singlePurchase)
   }
 }
 
@@ -16,17 +16,35 @@ const actions = {
     await axios.get(url).then((res) => {
       commit('SET_PURCHASE_INFO', res.data)
     })
+  },
+
+  async fetchPurchase({ commit }, id) {
+    let url = `/purchases/${id}`
+    await axios.get(url).then((res) => {
+      commit('SINGLE_PURCHASE_INFO', res.data)
+    })
+  },
+
+  async updatePurchase({ commit }, payload) {
+    let url = `/purchases/${payload.data.id}`;
+    await axios.put(url, payload).then((res) => {
+      commit('SINGLE_PURCHASE_INFO', res.data)
+    })
   }
 }
 
 const mutations = {
   SET_PURCHASE_INFO(state, value) {
     state.purchaseInfo = value
+  },
+  SINGLE_PURCHASE_INFO(state, value) {
+    state.singlePurchase = value
   }
 }
 
 const state = {
-  purchaseInfo: null
+  purchaseInfo: null,
+  singlePurchase: null
 }
 
 export default {

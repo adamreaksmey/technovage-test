@@ -24,10 +24,15 @@ class PurchaseController extends Controller
         return $form;
     }
 
-    public function update()
+    public function show($id)
     {
-        $id = $this->request->id;
-        $form = $this->request->form;
+        $data = $this->purchase->where('id', $id)->with('user')->first();
+        return $data;
+    }
+
+    public function update($id)
+    {
+        $form = $this->request->data;
         return response()->json([
             "id" => $id,
             "form" => $form

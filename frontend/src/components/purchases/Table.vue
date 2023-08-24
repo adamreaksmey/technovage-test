@@ -12,6 +12,7 @@
         <td>{{ purchase.customer_id }}</td>
         <td>{{ purchase.amount }}</td>
         <td>{{ purchase.created_at }}</td>
+        <td><CButton color="primary" @click="updatePurchase(purchase.id)">Update</CButton></td>
       </tr>
     </tbody>
   </table>
@@ -24,6 +25,11 @@ export default {
     purchases: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    updatePurchase(id) {
+      return this.$router.push(`/purchase/${id}`)
     }
   }
 }

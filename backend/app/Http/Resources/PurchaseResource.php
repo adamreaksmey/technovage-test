@@ -16,6 +16,7 @@ class PurchaseResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            "id" => $this->id,
             "customer_id" => $this->customer_id,
             "amount" => $this->amount,
             "created_at" => Carbon::parse($this->created_at)->format('Y-m-d H:i:s')
