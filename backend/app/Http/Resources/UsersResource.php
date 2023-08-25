@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PurchaseResource;
 
 class UsersResource extends JsonResource
 {
@@ -14,6 +15,7 @@ class UsersResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $score = $this->getScore();
         return [
             "id" => $this->id,
             "name" => $this->name,
@@ -21,9 +23,18 @@ class UsersResource extends JsonResource
             "created_at" => $this->created_at,
             "phone" => $this->phone_number,
             "address" => $this->address,
-            "score" => $this->score,
+            "score" => round($score, 2),
             "registration_date" => $this->registration_date,
-            "purchases" => $this->purchases
+            "purchases" => PurchaseResource::collection($this->purchases)
         ];
+    }
+
+    private function getScore()
+    {
+        $sum = 0;
+        foreach ($this->purchases as $key => $purchase) {
+            $sum += $purchase->amount;
+        }
+        return $sum;
     }
 }
