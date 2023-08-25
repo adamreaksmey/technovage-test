@@ -19,6 +19,7 @@ class PurchaseResource extends JsonResource
             "id" => $this->id,
             "customer_id" => $this->customer_id,
             "amount" => $this->amount,
+            "user" => $this->user,
             "created_at" => Carbon::parse($this->created_at)->format('Y-m-d H:i:s')
         ];
     }

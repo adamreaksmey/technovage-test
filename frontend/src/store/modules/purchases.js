@@ -3,7 +3,7 @@ import { toRaw } from 'vue'
 
 const getters = {
   getPurchase: (state) => {
-    return toRaw(state.purchaseInfo.data)
+    return toRaw(state.purchaseInfo?.data)
   },
   getSinglePurchase: (state) => {
     return toRaw(state.singlePurchase)

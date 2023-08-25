@@ -14,7 +14,7 @@ class PurchaseController extends Controller
 
     public function index()
     {
-        $data = $this->purchase->paginate(5);
+        $data = $this->purchase->with('user')->paginate(5);
         return PurchaseResource::collection($data);
     }
 
