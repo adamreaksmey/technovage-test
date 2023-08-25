@@ -1,6 +1,7 @@
 frontend
 ---
-npm install,
+vue 3, <br />
+npm install, <br />
 npm run dev
 
 backend
