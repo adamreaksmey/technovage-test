@@ -14,8 +14,13 @@ class UsersController extends Controller
 
     public function index()
     {
-        $data = $this->user->with('purchases')->paginate(5);
-        return UsersResource::collection($data)->resolve();
+        $users = $this->user->with('purchases');
+
+        if (!$this->request->page || $this->request->page == "undefined") {
+            return UsersResource::collection($users->get())->resolve();
+        }
+
+        return UsersResource::collection($users->paginate(5))->resolve();
     }
 
     public function update()
@@ -27,6 +32,7 @@ class UsersController extends Controller
 
     public function store()
     {
+
     }
 
     public function delete()

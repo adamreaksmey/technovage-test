@@ -26,9 +26,19 @@ const actions = {
   },
 
   async updatePurchase({ commit }, payload) {
-    let url = `/purchases/${payload.data.id}`;
+    let url = `/purchases/${payload.data.id}`
     await axios.put(url, payload).then((res) => {
+      alert('Purchase has been updated!')
       commit('SINGLE_PURCHASE_INFO', res.data)
+    })
+  },
+
+  async createPurchase({ commit }, payload) {
+    let url = `/purchases`
+    await axios.post(url, payload).then((res) => {
+      alert('Purchase has been created!')
+      window.location.href = '/purchases'
+      return
     })
   }
 }

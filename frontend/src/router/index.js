@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginForm from '../views/Login.vue'
-import TestingLayout from "../views/dashboard/index.vue"
-import UserTable from "../views/users/index.vue"
-import Purchases from "../views/purchases/index.vue"
-import PurchaseUpdate from "../views/purchases/update/index.vue"
+import TestingLayout from '../views/dashboard/index.vue'
+import UserTable from '../views/users/index.vue'
+import Purchases from '../views/purchases/index.vue'
+import PurchaseUpdate from '../views/purchases/update/index.vue'
+import PurchaseCreate from '../views/purchases/create/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +12,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: LoginForm,
+      component: LoginForm
     },
     {
       path: '/home',
@@ -19,19 +20,24 @@ const router = createRouter({
       component: TestingLayout
     },
     {
-      path: "/users",
+      path: '/users',
       name: 'users',
       component: UserTable
     },
     {
-      path: "/purchases",
-      name: "purchases",
+      path: '/purchases',
+      name: 'purchases',
       component: Purchases
     },
     {
-      path: "/purchase/:id",
-      name: "purchases-modify",
+      path: '/purchase/:id',
+      name: 'purchases-update',
       component: PurchaseUpdate
+    },
+    {
+      path: '/purchase/create',
+      name: 'purchase-create',
+      component: PurchaseCreate
     }
   ]
 })

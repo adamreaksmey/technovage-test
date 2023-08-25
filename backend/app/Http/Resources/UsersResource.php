@@ -15,7 +15,7 @@ class UsersResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $score = $this->getScore();
+        $score = floor($this->getScore() / 10);
         return [
             "id" => $this->id,
             "name" => $this->name,

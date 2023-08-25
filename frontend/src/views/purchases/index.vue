@@ -2,6 +2,7 @@
   <div>
     <div class="mb-3 d-flex">
       <input v-model="searchTerm" type="text" class="form-control w-50" placeholder="Search" />
+      <CButton @click="createPurchase" color="primary">Create Purchase</CButton>
     </div>
     <TablePurchases :purchases="filteredPurchases" />
     <vue-awesome-paginate
@@ -31,6 +32,9 @@ export default {
       searchTerm: ''
     }
   },
+  created() {
+    this.getPurchases()
+  },
   computed: {
     ...mapGetters({
       getPurchase: 'purchases/getPurchase'
@@ -46,7 +50,7 @@ export default {
           purchase.user.phone_number.toLowerCase().includes(searchTerm)
         )
       })
-    },
+    }
   },
   methods: {
     ...mapActions({
@@ -57,10 +61,10 @@ export default {
     },
     async getPurchases() {
       await this.fetchPurchases(this.currentPage)
+    },
+    createPurchase() {
+      this.$router.push('/purchase/create')
     }
-  },
-  created() {
-    this.getPurchases()
   }
 }
 </script>

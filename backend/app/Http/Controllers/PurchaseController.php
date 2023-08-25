@@ -14,14 +14,15 @@ class PurchaseController extends Controller
 
     public function index()
     {
-        $data = $this->purchase->with('user')->paginate(5);
+        $data = $this->purchase->with('user')->orderBy('created_at', 'desc')->paginate(5);
         return PurchaseResource::collection($data);
     }
 
     public function store()
     {
-        $form = $this->request->form;
-        return $form;
+        $form = (array) $this->request->all();
+        $data = $this->purchase->create($form);
+        return $data;
     }
 
     public function show($id)

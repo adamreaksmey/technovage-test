@@ -7,6 +7,7 @@
         <th>Phone</th>
         <th>Amount</th>
         <th>Created At</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
