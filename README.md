@@ -8,7 +8,7 @@ backend
 composer install,
 put this in your .env
 
-JWT_SECRET=""
-JWT_ALGO=""
+JWT_SECRET="" <br />
+JWT_ALGO="" <br />
 
 php artisan serve
