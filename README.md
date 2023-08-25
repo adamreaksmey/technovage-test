@@ -10,11 +10,14 @@ npm run dev
 backend
 ---
 composer install,
-put this in your .env
+put this below in your .env
 
 JWT_SECRET="" <br />
 JWT_ALGO="" <br />
 
+then run below ( backend ):
+---
+php artisan migrate <br />
 php artisan jwt:secret <br />
 php artisan serve
 
