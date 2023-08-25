@@ -15,6 +15,6 @@ put this in your .env
 JWT_SECRET="" <br />
 JWT_ALGO="" <br />
 
-php artisan jwt:secret
+php artisan jwt:secret <br />
 php artisan serve
 
