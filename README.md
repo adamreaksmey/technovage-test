@@ -9,8 +9,10 @@ npm run dev
 
 backend
 ---
-composer install,
-put this below in your .env
+please run this below in your backend folder:
+composer install
+
+then put this below in your .env file.
 
 JWT_SECRET="" <br />
 JWT_ALGO="" <br />
