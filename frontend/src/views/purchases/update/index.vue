@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
       <label for="name">Amount Purchased:</label>
-      <input type="text" id="amount" class="form-control" v-model="form.amount" disabled />
+      <input type="text" id="amount" class="form-control" v-model="form.amount" />
     </div>
     <div class="form-group">
       <label for="purchaseId">Customer ID:</label>
@@ -59,8 +59,8 @@ export default {
 
     async updatePurchase() {
       const raw = toRaw(this.form)
-      console.log(raw)
       await this.actionUpdatePurchase({ data: raw })
+      this.form = this.getSingle
     }
   }
 }

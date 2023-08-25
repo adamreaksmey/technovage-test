@@ -32,11 +32,13 @@ class PurchaseController extends Controller
 
     public function update($id)
     {
-        $form = $this->request->data;
-        return response()->json([
-            "id" => $id,
-            "form" => $form
+        $amount = $this->request->data['amount'];
+        $this->purchase->where("id", $id)->update([
+            "amount" => $amount
         ]);
+        $updatedData = $this->purchase->where('id', $id)->with('user')->first();
+
+        return $updatedData;
     }
 
     public function delete()
