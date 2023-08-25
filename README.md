@@ -19,9 +19,6 @@ don't forget to change the database name
 
 DB_DATABASE=laravel #change it to your database name
 
-JWT_SECRET="" <br />
-JWT_ALGO="" <br />
-
 then run below ( backend ):
 ---
 php artisan migrate <br />
