@@ -9,7 +9,7 @@ npm run dev
 
 backend
 ---
-please run this below in your backend folder:
+please run this below in your backend folder:<br />
 composer install
 
 then put this below in your .env file.
