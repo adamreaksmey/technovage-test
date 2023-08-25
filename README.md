@@ -12,7 +12,12 @@ backend
 please run this below in your backend folder:<br />
 composer install
 
-then put this below in your .env file.
+create a .env file, <br />
+copy everything in the .env.example file, <br />
+and paste it in your newly created .env file, <br />
+don't forget to change the database name
+
+DB_DATABASE=laravel #change it to your database name
 
 JWT_SECRET="" <br />
 JWT_ALGO="" <br />
