@@ -15,7 +15,7 @@ composer install
 create a .env file, <br />
 copy everything in the .env.example file, <br />
 and paste it in your newly created .env file, <br />
-don't forget to change the database name
+don't forget to change the database name and run the schema contents in the schema folder! <br />
 
 DB_DATABASE=laravel #change it to your database name
 
